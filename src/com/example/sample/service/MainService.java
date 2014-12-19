@@ -1,4 +1,4 @@
-package com.example.service;
+package com.example.sample.service;
 
 import android.app.Service;
 import android.content.Intent;
@@ -7,19 +7,22 @@ import android.media.MediaRecorder;
 import android.os.Binder;
 import android.os.IBinder;
 
-import com.example.tool.Recorder;
+import com.example.sample.tool.ChipList;
+import com.example.sample.tool.Player;
+import com.example.sample.tool.Recorder;
 
 public class MainService extends Service {
 
 	private MediaPlayer mPlayer;
-	private MediaRecorder mRecorder; 
+	private MediaRecorder mRecorder;
 	private Recorder recorder;
+	private Player player;
+	private ChipList chipList;
 
 	@Override
 	public IBinder onBind(Intent arg0) {
-		// TODO Auto-generated method stub
 		System.out.println("binding...");
-		return new mBinder(); 
+		return new mBinder();
 	}
 
 	public class mBinder extends Binder {
@@ -30,7 +33,6 @@ public class MainService extends Service {
 
 	@Override
 	public void onCreate() {
-		// TODO Auto-generated method stub
 		System.out.println("starting...");
 		super.onCreate();
 		init();
@@ -38,22 +40,21 @@ public class MainService extends Service {
 
 	@Override
 	public void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 	}
 
 	private void init() {
 		mPlayer = new MediaPlayer();
 		mRecorder = new MediaRecorder();
-		recorder = new Recorder(mRecorder,mPlayer);
-		
+		recorder = new Recorder(mRecorder, mPlayer);
+		player = new Player(mPlayer);
 	}
-	
-	public Recorder getRecorder(){
+
+	public Recorder getRecorder() {
 		return recorder;
 	}
-	
-	public void test(){
+
+	public void test() {
 		System.out.println("test!!!");
 	}
 }

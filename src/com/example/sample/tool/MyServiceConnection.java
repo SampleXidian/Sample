@@ -1,10 +1,10 @@
-package com.example.tool;
+package com.example.sample.tool;
 
 import android.content.ComponentName;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 
-import com.example.service.MainService;
+import com.example.sample.service.MainService;
 
 public class MyServiceConnection implements ServiceConnection{
 
